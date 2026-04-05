@@ -1,5 +1,14 @@
 # TODO
 
+## Current Focus
+
+Current milestone: `Milestone 2: Guided-Looking MVP Shell`
+
+Immediate priority:
+- make the artwork pane feel more intentional and persistent on mobile and desktop
+- improve the editorial polish of spacing, typography, and hierarchy
+- keep the current lesson experience stable while preparing the Convex migration in Milestone 3
+
 ## Milestone 1: Project Foundation
 
 - [x] Write `vision.md`
@@ -9,7 +18,7 @@
 - [x] Install Expo Router, image, filesystem, and SQLite packages
 - [x] Install Convex and add provider/env scaffolding
 - [x] Create initial app structure for daily lessons
-- [ ] Push milestone 1 to GitHub
+- [x] Push milestone 1 to GitHub
 
 ## Milestone 2: Guided-Looking MVP Shell
 
