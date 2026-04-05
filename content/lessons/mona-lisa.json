@@ -1,0 +1,96 @@
+{
+  "id": "mona-lisa",
+  "slug": "mona-lisa",
+  "publishDate": "2026-04-06",
+  "title": "Mona Lisa",
+  "artistName": "Leonardo da Vinci",
+  "artistYears": "1452-1519",
+  "yearLabel": "c. 1503-1519",
+  "medium": "Oil on poplar panel",
+  "dimensions": "77 cm x 53 cm",
+  "museumName": "Musee du Louvre",
+  "museumLocation": "Paris, France",
+  "imageAlt": "Leonardo da Vinci's Mona Lisa seated before a distant landscape.",
+  "summary": "A famous painting only becomes interesting again when you stop treating its fame as the main thing to notice. This lesson keeps the portrait in view and asks you to look closely at expression, posture, and atmosphere.",
+  "context": "Painted over many years, the Mona Lisa is often reduced to celebrity. What makes it compelling is how much uncertainty Leonardo leaves in the face, the posture, and the strangely distant landscape behind her.",
+  "reflectionPrompt": "After looking at the eyes, mouth, and hands in sequence, does she feel welcoming to you, guarded, melancholy, or something harder to name?",
+  "image": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/1408px-Mona_Lisa.jpg",
+    "width": 1408,
+    "height": 2119,
+    "credit": "Musee du Louvre / Wikimedia Commons",
+    "license": "Public domain",
+    "dominantColor": "#6f5b4d",
+    "responsiveSources": [
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/768px-Mona_Lisa.jpg",
+        "width": 768,
+        "height": 1155
+      },
+      {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/1408px-Mona_Lisa.jpg",
+        "width": 1408,
+        "height": 2119
+      }
+    ]
+  },
+  "thumbnail": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/320px-Mona_Lisa.jpg",
+    "width": 320,
+    "height": 481
+  },
+  "beats": [
+    {
+      "id": "eyes",
+      "title": "Start with the eyes",
+      "body": "Look at how the eyes meet you without widening into a theatrical stare. The effect is steady and restrained, which is one reason the portrait can feel more melancholy or inward than simply cheerful.",
+      "focusRegion": {
+        "x": 0.34,
+        "y": 0.16,
+        "width": 0.27,
+        "height": 0.12,
+        "shape": "rect"
+      },
+      "overlayStyle": "soft-outline"
+    },
+    {
+      "id": "mouth",
+      "title": "Then the mouth shifts",
+      "body": "The mouth is small, softened by Leonardo's smoky transitions. It never quite resolves into a fixed smile, which makes her expression feel unstable: it can seem warmer one second and more withdrawn the next.",
+      "focusRegion": {
+        "x": 0.39,
+        "y": 0.28,
+        "width": 0.2,
+        "height": 0.1,
+        "shape": "rect"
+      },
+      "overlayStyle": "soft-outline"
+    },
+    {
+      "id": "hands",
+      "title": "The hands calm the portrait",
+      "body": "Her folded hands are unusually important. They anchor the whole image, giving the portrait a composed stillness. Without them, the face might feel more elusive and psychologically unsettled.",
+      "focusRegion": {
+        "x": 0.3,
+        "y": 0.58,
+        "width": 0.36,
+        "height": 0.18,
+        "shape": "rect"
+      },
+      "overlayStyle": "soft-outline"
+    },
+    {
+      "id": "landscape",
+      "title": "Notice the world behind her",
+      "body": "The landscape is not just background filler. Its winding roads, distant water, and uneven horizons make the portrait feel slightly uncanny, as if her calm surface is set against a world that is less stable than it first appears.",
+      "focusRegion": {
+        "x": 0.08,
+        "y": 0.02,
+        "width": 0.84,
+        "height": 0.5,
+        "shape": "rect"
+      },
+      "overlayStyle": "soft-outline"
+    }
+  ]
+}
