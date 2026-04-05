@@ -33,6 +33,14 @@ export type LessonBeat = {
 };
 
 export type Lesson = {
+  metObjectId?: number;
+  source?: {
+    provider: "met";
+    objectURL: string;
+    primaryImage: string;
+    isPublicDomain: boolean;
+    license: string;
+  };
   id: string;
   slug: string;
   publishDate: string;

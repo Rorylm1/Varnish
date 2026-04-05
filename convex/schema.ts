@@ -3,6 +3,16 @@ import { v } from "convex/values";
 
 export default defineSchema({
   lessons: defineTable({
+    metObjectId: v.optional(v.number()),
+    source: v.optional(
+      v.object({
+        provider: v.literal("met"),
+        objectURL: v.string(),
+        primaryImage: v.string(),
+        isPublicDomain: v.boolean(),
+        license: v.string(),
+      })
+    ),
     slug: v.string(),
     publishDate: v.string(),
     title: v.string(),

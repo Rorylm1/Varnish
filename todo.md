@@ -42,8 +42,9 @@ Immediate priority:
 
 ## Milestone 4: Image Delivery and Caching
 
-- [ ] Add Sanity image URL builder utilities
-- [ ] Wire responsive image variants into the lesson schema
+- [x] Add initial Met API ingestion utilities
+- [ ] Add Met-backed candidate search and object selection workflow
+- [ ] Wire Met image metadata and responsive variants into the lesson schema
 - [ ] Add lightweight local lesson metadata caching
 - [ ] Prefetch current and near-future lesson assets
 - [ ] Test image quality versus payload size on mobile web

@@ -32,9 +32,9 @@ The goal of this approach is to validate the guided-looking experience quickly w
 
 ### Image Delivery
 
-- store original high-resolution artwork files in Sanity
-- use Sanity's asset CDN and image transformations for responsive delivery
-- deliver multiple image sizes for different device and layout contexts
+- use The Met Open Access API as the first official source of artwork metadata and public-domain JPEGs
+- keep source provenance, object URLs, and rights metadata with every lesson record
+- derive app-ready image variants from Met source URLs or later mirror selected masters if needed
 
 ### Offline Support
 
@@ -50,7 +50,7 @@ It gives us:
 - the fastest path to a polished guided-looking prototype
 - a shared codebase for web now and iOS later
 - a clean path to move from local fixtures to Convex queries
-- high-quality image handling without building our own media pipeline
+- official museum image provenance from day one
 - simple static hosting and low operational overhead
 
 It does not give us:
@@ -112,21 +112,30 @@ This is one of the most important MVP implementation areas.
 
 #### Source of Truth
 
-- keep an original master image in Sanity for each artwork
-- prefer public-domain works with clean licensing and stable source material
-- keep source attribution, license, and museum credit with the asset metadata
+- use The Met Collection API as the first source for artwork metadata and images
+- only ingest objects where `isPublicDomain` is `true`
+- prefer works with `primaryImage` present, not only `primaryImageSmall`
+- keep object ID, object URL, credit line, repository, and rights status with the lesson metadata
 
 #### Delivery Strategy
 
-We should not serve the original master image directly to the client in normal app usage.
+We should not assume every Met image can be used raw in every screen context.
 
-Instead, generate delivery variants:
+For v1, the app should store both:
+- the original Met image URL reference
+- a smaller display-safe variant reference when available
+
+The runtime image strategy should support:
 - thumbnail
 - mobile hero
 - desktop hero
 - optional zoom/detail variant
 
-Each lesson should reference these derived assets through Sanity image URLs.
+In the first pass, we can rely on:
+- `primaryImage` for high-quality detail-capable views
+- `primaryImageSmall` for lighter preview and fallback use
+
+If bandwidth becomes a problem, we can later add a mirroring/resizing layer, but that is not required to start with The Met.
 
 Recommended delivery targets:
 - thumbnail: low-weight preview
@@ -138,15 +147,15 @@ The exact image sizes can be tuned after testing, but the rule is:
 - preserve perceived quality
 - never download more than the layout can realistically use
 
-#### Why Sanity for Images
+#### Why The Met First
 
-Sanity gives us:
-- managed asset storage
-- CDN delivery
-- on-the-fly resizing
-- no custom image processing service to build in v1
+The Met gives us:
+- official museum provenance
+- rich artwork metadata
+- public-domain image access without API keys
+- a large collection of recognisable works and highlights
 
-That keeps the image problem operationally simple while still supporting a premium visual result.
+That makes it the best first ingestion source for V1.
 
 ### 4. Guided-Looking Overlay Model
 
@@ -223,11 +232,13 @@ This should be treated as a follow-up enhancement, not a day-one dependency.
 
 1. Choose a public-domain painting.
 2. Source the highest-quality available image.
-3. Upload the master file to Sanity.
-4. Create the lesson payload from the shared schema.
-5. Add focus regions for each guided-looking beat.
-6. Validate the lesson payload locally.
-7. Save the lesson into Convex once the backend is connected.
+3. Fetch the object record from The Met API.
+4. Validate that `isPublicDomain` is true and `primaryImage` is present.
+5. Create the lesson payload from the shared schema.
+6. Store source metadata and image URLs with the lesson.
+7. Add focus regions for each guided-looking beat.
+8. Validate the lesson payload locally.
+9. Save the lesson into Convex once the backend is connected.
 
 ### Authoring Approach
 
@@ -254,6 +265,9 @@ Reasoning:
     getLesson.ts
     validateLesson.ts
   convex.ts
+  /met
+    api.ts
+    normalize-object.ts
   /image
     buildImageUrl.ts
   /storage
@@ -272,7 +286,8 @@ Key responsibilities:
 - `getLesson.ts`: resolves and parses lesson payloads
 - `validateLesson.ts`: runtime validation for lesson structure
 - `convex.ts`: initializes the shared Convex client from Expo env vars
-- `buildImageUrl.ts`: creates Sanity image URLs for required sizes
+- `api.ts`: fetches search and object data from The Met API
+- `normalize-object.ts`: maps Met records into lesson seed data
 - `lessonCache.ts`: caches manifest metadata and lesson lookups
 
 ## MVP Implementation Steps
@@ -281,6 +296,7 @@ Key responsibilities:
 
 - initialize Expo app with Expo Router
 - add Convex client and env plumbing
+- add Met API utilities and ingestion scripts
 - configure web target
 - create lesson TypeScript types
 - add one or two sample lesson JSON files

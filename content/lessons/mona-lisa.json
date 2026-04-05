@@ -2,6 +2,13 @@
   "id": "mona-lisa",
   "slug": "mona-lisa",
   "publishDate": "2026-04-06",
+  "source": {
+    "provider": "met",
+    "objectURL": "https://www.metmuseum.org/",
+    "primaryImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/1408px-Mona_Lisa.jpg",
+    "isPublicDomain": true,
+    "license": "Public domain development fixture"
+  },
   "title": "Mona Lisa",
   "artistName": "Leonardo da Vinci",
   "artistYears": "1452-1519",
