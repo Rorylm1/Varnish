@@ -1,100 +1,101 @@
 {
-  "id": "mona-lisa",
-  "slug": "mona-lisa",
+  "metObjectId": 436535,
+  "id": "wheat-field-with-cypresses",
+  "slug": "wheat-field-with-cypresses",
   "publishDate": "2026-04-06",
   "source": {
     "provider": "met",
-    "objectURL": "https://www.metmuseum.org/",
-    "primaryImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/1408px-Mona_Lisa.jpg",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/436535",
+    "primaryImage": "https://images.metmuseum.org/CRDImages/ep/original/DP-42549-001.jpg",
     "isPublicDomain": true,
-    "license": "Public domain development fixture"
+    "license": "CC0 / Public Domain"
   },
-  "title": "Mona Lisa",
-  "artistName": "Leonardo da Vinci",
-  "artistYears": "1452-1519",
-  "yearLabel": "c. 1503-1519",
-  "medium": "Oil on poplar panel",
-  "dimensions": "77 cm x 53 cm",
-  "museumName": "Musee du Louvre",
-  "museumLocation": "Paris, France",
-  "imageAlt": "Leonardo da Vinci's Mona Lisa seated before a distant landscape.",
-  "summary": "A famous painting only becomes interesting again when you stop treating its fame as the main thing to notice. This lesson keeps the portrait in view and asks you to look closely at expression, posture, and atmosphere.",
-  "context": "Painted over many years, the Mona Lisa is often reduced to celebrity. What makes it compelling is how much uncertainty Leonardo leaves in the face, the posture, and the strangely distant landscape behind her.",
-  "reflectionPrompt": "After looking at the eyes, mouth, and hands in sequence, does she feel welcoming to you, guarded, melancholy, or something harder to name?",
+  "title": "Wheat Field with Cypresses",
+  "artistName": "Vincent van Gogh",
+  "artistYears": "1853-1890",
+  "yearLabel": "1889",
+  "medium": "Oil on canvas",
+  "dimensions": "28 13/16 x 36 3/4 in. (73.2 x 93.4 cm)",
+  "museumName": "The Metropolitan Museum of Art",
+  "museumLocation": "New York, NY",
+  "imageAlt": "Vincent van Gogh, Wheat Field with Cypresses, 1889.",
+  "summary": "This Met image is pulled from Van Gogh's Wheat Field with Cypresses. The painting feels exuberant at first glance, but its energy comes from how every part of the scene seems to move in a different rhythm.",
+  "context": "Van Gogh painted cypresses repeatedly while in Saint-Remy. Here, the field, mountains, clouds, and tree do not settle into a calm landscape. Each part seems to surge with its own kind of motion, making the scene feel both observed and emotionally amplified.",
+  "reflectionPrompt": "After looking at the wheat, the cypress, and the sky separately, does the scene feel peaceful to you, or does it feel more restless than it first appeared?",
   "image": {
-    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/1408px-Mona_Lisa.jpg",
-    "width": 1408,
-    "height": 2119,
-    "credit": "Musee du Louvre / Wikimedia Commons",
-    "license": "Public domain",
-    "dominantColor": "#6f5b4d",
+    "src": "https://images.metmuseum.org/CRDImages/ep/original/DP-42549-001.jpg",
+    "width": 1868,
+    "height": 1464,
+    "credit": "Purchase, The Annenberg Foundation Gift, 1993",
+    "license": "CC0 / Public Domain",
+    "dominantColor": "#6f7f67",
     "responsiveSources": [
       {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/768px-Mona_Lisa.jpg",
-        "width": 768,
-        "height": 1155
+        "src": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-42549-001.jpg",
+        "width": 1280,
+        "height": 1003
       },
       {
-        "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/1408px-Mona_Lisa.jpg",
-        "width": 1408,
-        "height": 2119
+        "src": "https://images.metmuseum.org/CRDImages/ep/original/DP-42549-001.jpg",
+        "width": 1868,
+        "height": 1464
       }
     ]
   },
   "thumbnail": {
-    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mona_Lisa.jpg/320px-Mona_Lisa.jpg",
-    "width": 320,
-    "height": 481
+    "src": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-42549-001.jpg",
+    "width": 1280,
+    "height": 1003
   },
   "beats": [
     {
-      "id": "eyes",
-      "title": "Start with the eyes",
-      "body": "Look at how the eyes meet you without widening into a theatrical stare. The effect is steady and restrained, which is one reason the portrait can feel more melancholy or inward than simply cheerful.",
+      "id": "wheat",
+      "title": "Start with the wheat",
+      "body": "The field is not painted as a flat carpet of yellow. Its strokes bend and flicker in different directions, so the ground itself seems to ripple. That restless movement is one reason the scene feels alive rather than merely scenic.",
       "focusRegion": {
-        "x": 0.34,
-        "y": 0.16,
-        "width": 0.27,
-        "height": 0.12,
+        "x": 0.06,
+        "y": 0.54,
+        "width": 0.88,
+        "height": 0.32,
         "shape": "rect"
       },
       "overlayStyle": "soft-outline"
     },
     {
-      "id": "mouth",
-      "title": "Then the mouth shifts",
-      "body": "The mouth is small, softened by Leonardo's smoky transitions. It never quite resolves into a fixed smile, which makes her expression feel unstable: it can seem warmer one second and more withdrawn the next.",
+      "id": "cypress",
+      "title": "Then isolate the cypress",
+      "body": "The dark tree is not just a vertical accent. It twists upward like a flame, giving the whole painting a central pulse. It is heavier and darker than everything around it, but it still seems to move.",
       "focusRegion": {
-        "x": 0.39,
-        "y": 0.28,
-        "width": 0.2,
-        "height": 0.1,
+        "x": 0.41,
+        "y": 0.12,
+        "width": 0.16,
+        "height": 0.58,
         "shape": "rect"
       },
       "overlayStyle": "soft-outline"
     },
     {
-      "id": "hands",
-      "title": "The hands calm the portrait",
-      "body": "Her folded hands are unusually important. They anchor the whole image, giving the portrait a composed stillness. Without them, the face might feel more elusive and psychologically unsettled.",
+      "id": "sky",
+      "title": "Look at the clouds separately",
+      "body": "The clouds do not drift quietly across the top of the picture. They curl and sweep with a rhythm that answers the wheat below. Van Gogh makes the sky feel as animated as the earth, which blurs the line between weather and emotion.",
       "focusRegion": {
-        "x": 0.3,
-        "y": 0.58,
-        "width": 0.36,
-        "height": 0.18,
+        "x": 0.06,
+        "y": 0.03,
+        "width": 0.88,
+        "height": 0.24,
         "shape": "rect"
       },
       "overlayStyle": "soft-outline"
     },
     {
-      "id": "landscape",
-      "title": "Notice the world behind her",
-      "body": "The landscape is not just background filler. Its winding roads, distant water, and uneven horizons make the portrait feel slightly uncanny, as if her calm surface is set against a world that is less stable than it first appears.",
+      "id": "mountains",
+      "title": "Finish with the mountains",
+      "body": "The mountains are calmer than the foreground, but not still. Their rolling contours absorb some of the sky's motion and some of the field's. That middle distance keeps the painting from separating into neat layers and helps everything feel connected.",
       "focusRegion": {
-        "x": 0.08,
-        "y": 0.02,
-        "width": 0.84,
-        "height": 0.5,
+        "x": 0.16,
+        "y": 0.27,
+        "width": 0.68,
+        "height": 0.24,
         "shape": "rect"
       },
       "overlayStyle": "soft-outline"
