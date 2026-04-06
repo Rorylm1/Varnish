@@ -3,6 +3,7 @@ import {
   ImageStyle,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -22,9 +23,13 @@ import { getFocusRegionStyle } from "@/lib/focus-region";
 const { manifest, lesson } = getTodayLesson();
 const dailyLesson = validateLesson(lesson);
 const convexConnected = Boolean(getConvexUrl());
+const artworkAspectRatio =
+  dailyLesson.image.width > 0 && dailyLesson.image.height > 0
+    ? dailyLesson.image.width / dailyLesson.image.height
+    : 1;
 const artworkStyle: ImageStyle = {
   width: "100%",
-  aspectRatio: 0.8,
+  aspectRatio: artworkAspectRatio,
   borderRadius: 20,
   backgroundColor: "#d8c9b4",
 };
@@ -35,6 +40,14 @@ export default function HomeScreen() {
   const [showOverlay, setShowOverlay] = useState(true);
 
   const isWide = width >= 960;
+  const stickyWideStyle =
+    Platform.OS === "web"
+      ? ({
+          position: "sticky",
+          top: 24,
+          alignSelf: "flex-start",
+        } as unknown as object)
+      : undefined;
   const activeBeat = dailyLesson.beats[activeBeatIndex];
   const activeRegion = useMemo(
     () => getFocusRegionStyle(activeBeat.focusRegion),
@@ -65,7 +78,13 @@ export default function HomeScreen() {
         scrollEventThrottle={16}
         stickyHeaderIndices={isWide ? undefined : [0]}
       >
-        <View style={[styles.heroShell, isWide && styles.heroShellWide]}>
+        <View
+          style={[
+            styles.heroShell,
+            isWide && styles.heroShellWide,
+            isWide && stickyWideStyle,
+          ]}
+        >
           <View style={styles.heroMeta}>
             <Text style={styles.eyebrow}>Daily Lesson</Text>
             <Text style={styles.title}>{dailyLesson.title}</Text>
@@ -74,9 +93,15 @@ export default function HomeScreen() {
             </Text>
             <Text style={styles.summary}>{dailyLesson.summary}</Text>
 
-            <View style={styles.inlineMetaRow}>
-              <Text style={styles.inlineMetaLabel}>Today</Text>
-              <Text style={styles.inlineMetaValue}>{manifest.currentLessonId}</Text>
+            <View style={styles.metaPills}>
+              <View style={styles.metaPill}>
+                <Text style={styles.metaPillLabel}>Today</Text>
+                <Text style={styles.metaPillValue}>{manifest.currentLessonId}</Text>
+              </View>
+              <View style={styles.metaPill}>
+                <Text style={styles.metaPillLabel}>Medium</Text>
+                <Text style={styles.metaPillValue}>{dailyLesson.medium}</Text>
+              </View>
             </View>
           </View>
 
@@ -96,17 +121,45 @@ export default function HomeScreen() {
               />
             ) : null}
           </View>
+
+          <View style={styles.activeFocusCard}>
+            <Text style={styles.activeFocusEyebrow}>
+              Guided Looking • Stop {activeBeatIndex + 1}
+            </Text>
+            <Text style={styles.activeFocusTitle}>{activeBeat.title}</Text>
+            <Text style={styles.activeFocusBody}>{activeBeat.body}</Text>
+          </View>
         </View>
 
         <View style={[styles.lessonColumn, isWide && styles.lessonColumnWide]}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionEyebrow}>Why this work</Text>
-            <Text style={styles.sectionBody}>
-              {dailyLesson.context}
-            </Text>
+            <Text style={styles.sectionBody}>{dailyLesson.context}</Text>
           </View>
 
           <ConvexStatusBanner connected={convexConnected} />
+
+          <View style={styles.progressRow}>
+            {dailyLesson.beats.map((beat, index) => (
+              <Pressable
+                key={beat.id}
+                onPress={() => setActiveBeatIndex(index)}
+                style={[
+                  styles.progressPill,
+                  index === activeBeatIndex && styles.progressPillActive,
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.progressPillText,
+                    index === activeBeatIndex && styles.progressPillTextActive,
+                  ]}
+                >
+                  {index + 1}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
 
           <View style={styles.toggleRow}>
             <Text style={styles.toggleLabel}>Focus overlay</Text>
@@ -164,7 +217,6 @@ const styles = StyleSheet.create({
   },
   heroShellWide: {
     width: "48%",
-    minHeight: "100%",
     borderBottomWidth: 0,
     paddingHorizontal: 0,
     paddingTop: 0,
@@ -194,21 +246,32 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     color: "#332c26",
   },
-  inlineMetaRow: {
+  metaPills: {
     flexDirection: "row",
     gap: 10,
-    alignItems: "center",
-    marginTop: 4,
+    alignItems: "flex-start",
+    marginTop: 8,
+    flexWrap: "wrap",
   },
-  inlineMetaLabel: {
+  metaPill: {
+    backgroundColor: "#efe6d9",
+    borderRadius: 999,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderColor: "#d6c8b4",
+    gap: 3,
+  },
+  metaPillLabel: {
     fontSize: 12,
     textTransform: "uppercase",
-    letterSpacing: 1.8,
+    letterSpacing: 1.2,
     color: "#8f806f",
   },
-  inlineMetaValue: {
+  metaPillValue: {
     fontSize: 13,
     color: "#5a4f45",
+    maxWidth: 200,
   },
   artFrame: {
     backgroundColor: "#e7ddce",
@@ -217,6 +280,32 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderWidth: 1,
     borderColor: "#cabaa5",
+  },
+  activeFocusCard: {
+    marginTop: 16,
+    backgroundColor: "#fbf7f0",
+    borderRadius: 22,
+    borderWidth: 1,
+    borderColor: "#d8cbb8",
+    padding: 18,
+    gap: 8,
+  },
+  activeFocusEyebrow: {
+    fontSize: 12,
+    textTransform: "uppercase",
+    letterSpacing: 1.7,
+    color: "#916f56",
+  },
+  activeFocusTitle: {
+    fontSize: 22,
+    lineHeight: 28,
+    color: "#241d18",
+    fontWeight: "700",
+  },
+  activeFocusBody: {
+    fontSize: 15,
+    lineHeight: 24,
+    color: "#3b322b",
   },
   lessonColumn: {
     paddingHorizontal: 20,
@@ -243,6 +332,34 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 26,
     color: "#342c26",
+  },
+  progressRow: {
+    flexDirection: "row",
+    gap: 10,
+    flexWrap: "wrap",
+    marginBottom: 4,
+  },
+  progressPill: {
+    width: 36,
+    height: 36,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: "#d6c8b4",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fbf8f2",
+  },
+  progressPillActive: {
+    backgroundColor: "#7d4b31",
+    borderColor: "#7d4b31",
+  },
+  progressPillText: {
+    color: "#7a6b5e",
+    fontSize: 14,
+    fontWeight: "700",
+  },
+  progressPillTextActive: {
+    color: "#fff9f1",
   },
   toggleRow: {
     flexDirection: "row",
